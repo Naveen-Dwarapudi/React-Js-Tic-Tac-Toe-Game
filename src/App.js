@@ -1,25 +1,66 @@
-import logo from './logo.svg';
+import React from "react";
+import Colorgame from "./Colorgame.js";
+import ColorBox from "./addcolor.js";
+import Adder from "./movielist.js";
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/Colorgame">Colorgame</Link>
+            </li>
+            <li>
+              <Link to="/addcolor">addcolor</Link>
+            </li>
+            <li>
+              <Link to="/movielist">movielist</Link>
+            </li>
+          </ul>
+        </nav>
+        <Switch>
+        <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/Colorgame">
+            <Colorgame />
+           
+          </Route>
+          <Route path="/addcolor">
+            
+            <ColorBox />
+          </Route>
+          <Route path="/movielist">
+            
+            <Adder />
+          </Route>
+          <Route path="**">
+            <Error />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+function Error()
+{
+  return(
+    <img className="error" src="https://freefrontend.com/assets/img/html-funny-404-pages/CodePen-404-Page.gif" alt="404 Error"></img>
+  );
+}
+function Home() {
+  return <h2>Welcome to react app👍😒</h2>;
+}
