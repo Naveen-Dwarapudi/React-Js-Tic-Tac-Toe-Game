@@ -1,28 +1,34 @@
 import './App.css';
 import { useState } from "react";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 export default ColorBox;
 
 function ColorBox()
 {
-  const[color,setColor] = useState("blue");
+  const[color,setColor] = useState("");
   const styles={
-    background:color,
+  background:color,
   };
   const[colorList,setColorList]=useState(["red","blue","green"]);
   return(
-    <div>
-      <input value={color}
-             style={styles} 
-      onChange={(event)=> setColor(event.target.value)}
-      placeholder="enter the color" />
-      <button onClick={() => setColorList([...colorList,color])}>Add Color</button>
-      {colorList.map((clr)=>(
-        <Bolorbox color={clr} />
+    <div className='center'>
+
+<TextField
+          id="outlined-required"
+          label="Enter the color"
+          onChange={(event)=> setColor(event.target.value)}
+        />
+<br></br>
+
+      <Button variant="contained"onClick={() => setColorList([...colorList,color])}>Add Color</Button>
+      {colorList.map((item)=>(
+        <Bolorbox color={item} />
       ))}
     </div>
   );
   }
-  function Bolorbox({ color})
+  function Bolorbox({color})
   {
     const styles={
       backgroundColor:color,

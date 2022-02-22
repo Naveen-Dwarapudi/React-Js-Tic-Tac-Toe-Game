@@ -2,10 +2,12 @@ import './App.css';
 import { useState } from "react";
 import useWindowSize from 'react-use/lib/useWindowSize';
 import Confetti from 'react-confetti';
+import Button from '@mui/material/Button';
 
 
 function Colorgame() {
   const [board, setBoard]=useState([null,null,null,null,null,null,null,null,null]);
+  //winner possibilities
    const decideWinner=(board)=>{
      const lines=[
        [0,1,2],
@@ -17,6 +19,7 @@ function Colorgame() {
        [0,4,8],
        [2,4,6],
      ];
+     //checking whether X OR O wins the Game
      for(let i=0;i<lines.length;i++)
      {
        const[a,b,c]=lines[i];
@@ -28,6 +31,8 @@ function Colorgame() {
      }
      return null;
    };
+
+
    const winner=decideWinner(board);
 
   const[isXturn,setIsXTurn]=useState(true);
@@ -56,8 +61,9 @@ function Colorgame() {
     {board.map((val,index) =>(<Gamebox val={val} onPlayerClick={() => handleClick(index)} /> ))}
  </div>
           {winner ? <h2>Winner is: {winner} </h2>:""}
-          <button onClick={()=>{ setBoard([null,null,null,null,null,null,null,null,null])
-          setIsXTurn(true);}}>Restart</button>
+          <br></br>
+            <Button variant="contained"onClick={()=>{ setBoard([null,null,null,null,null,null,null,null,null])
+          setIsXTurn(true);}}>Restart</Button>
 
  </div>
   
