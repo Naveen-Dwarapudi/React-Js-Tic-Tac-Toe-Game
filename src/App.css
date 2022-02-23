@@ -42,27 +42,27 @@
 }
 .lists
 {
-  display: flex;
-  flex-direction: column;
-  margin:56px;
-  float: left;
-  width: 330px;
-  max-height: 800px;
+  display: inline-block;
+  margin: 60px 60px;
+  width:320px;
+  height:480px;
+  vertical-align: top;
+ 
 
 }
 
 
 
-@media only screen and (max-width: 1150px) {
+@media only screen and (max-width: 1100px) {
   .list {
-    width: 40%;
+  
   }
 }
 
 
 @media only screen and (max-width: 800px) {
   .list {
-    width: 70%;
+
   }
 }
 .movie-rating
@@ -101,4 +101,13 @@ display: flex;
     flex-direction: column;
     align-items: center;
   
+}
+.router-container
+{
+  margin:30px 1px;
+}
+.mainpage
+{
+  text-align: center;
+  margin: 50px;
 }

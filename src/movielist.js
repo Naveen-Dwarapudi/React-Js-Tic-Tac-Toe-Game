@@ -12,18 +12,19 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import InfoIcon from '@mui/icons-material/Info';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import EditIcon from '@mui/icons-material/Edit';
+
 export default Adder;
 
 
 function Adder({movieList,setMovielist})
 {
   const history = useHistory()
-
+  console.log(movieList);
   return(
-    <div>
+    <div className='one'>
 
     {movieList.map(({name,poster,rating,summary},index) => (
-
+   
      <Wel
      key={index}
      names={name} 
@@ -91,14 +92,12 @@ function Wel({names,posters,ratings,summarys,deletebutton,editbutton,id})
   const[show,setShow]= useState(false);
   const history=useHistory(true);
   const summarystyles={
-    display:show? "block" : "none",
-    
+    display:show? "none" : "block",
+    height:'80px'
   };
-
-
   return(
       <div className='lists'>
-     <Card>
+     <Card styles={{width:'50px'}}>
 
        <CardMedia 
         component="img"
@@ -106,13 +105,15 @@ function Wel({names,posters,ratings,summarys,deletebutton,editbutton,id})
         image={posters}
         alt="images"
         />
-
        <CardContent >
            <div className='head'>
-           <div>{names}<IconButton color="primary" onClick={() => setShow(!show)}>
+           <div>{names}
+           
+           <IconButton color="primary" onClick={() => setShow(!show)}>
              {show ?< ExpandMoreIcon /> :
              <ExpandLessIcon />}
              </IconButton>
+             
              <IconButton color="primary" onClick={() => history.push(`/movielist/${id}`)} aria-label="toogle button">
              < InfoIcon/>
              </IconButton>

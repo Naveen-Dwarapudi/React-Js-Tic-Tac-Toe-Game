@@ -22,11 +22,11 @@ import CardContent from '@mui/material/CardContent';
 import { EditMovie } from "./EditMovie.js";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-
+import Box from '@mui/material/Box';
 
 
 export default function App() {
-  const history= useHistory();
+  
   const [movieList,setMovielist] = useState(Initial);
  
   return (
@@ -34,34 +34,20 @@ export default function App() {
     <Router>
       <div>
          <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/Colorgame">Colorgame</Link>
-            </li>
-            <li>
-              <Link to="/addcolor">addcolor</Link>
-            </li>
-            <li>
-              <Link to="/movielist">movielist</Link>
-            </li>
-            <li>
-              <Link to="/movielist/Addmovie">Addmovie</Link>
-            </li>
-          
-          </ul>
        
-           <AppBar position="static">
+      <AppBar position="static">
         <Toolbar>
-        <Button color="inherit" onClick={() => history.push("/")}>Home</Button>
-          <Button color="inherit" onClick={() => history.push("/movielist")}>MovieList</Button>
-          <Button color="inherit">Colorgame</Button>
-          <Button color="inherit">Add color</Button>
-          <Button color="inherit">Add Movie</Button>
+        
+        <Button  color="inherit" component={Link} to="/" >  <Box sx={{ fontWeight: 'bold', fontSize: '13px'  }}>Home</Box></Button>
+        <Button color="inherit" component={Link} to="/movielist" ><Box sx={{ fontWeight: 'bold', fontSize: '13px'  }}>MovieList</Box></Button>
+        <Button color="inherit" component={Link} to="/movielist/Addmovie" ><Box sx={{ fontWeight: 'bold', fontSize: '13px'  }}>Add Movie</Box></Button>
+        <Button color="inherit" component={Link} to="/Colorgame" ><Box sx={{ fontWeight: 'bold', fontSize: '13px'  }}>Colorgame</Box></Button>
+        <Button color="inherit" component={Link} to="/addcolor" ><Box sx={{ fontWeight: 'bold', fontSize: '13px'  }}>Add color</Box></Button>
+       
+      
         </Toolbar>
       </AppBar>
+      <div  className="router-container">
         <Switch>
         <Route exact path="/">
             <Home />
@@ -84,7 +70,7 @@ export default function App() {
 
             {/*makes  thr id a variable*/}
             <Route path="/movielist/:id"> 
-            <Moviedetails Initial={Initial} />
+            <Moviedetails Initial={movieList} />
           </Route>
 
           <Route path="/movielist"> 
@@ -97,6 +83,7 @@ export default function App() {
             <Error />
           </Route>
         </Switch>
+        </div>
         </nav> 
       </div>
     </Router>
@@ -110,7 +97,7 @@ function Error()
   );
 }
 function Home() {
-  return <h2>Welcome to react app👍😒</h2>;
+  return <h2 className="mainpage">Welcome to react app👍😒</h2>;
 }
 
 function Moviedetails({Initial})
