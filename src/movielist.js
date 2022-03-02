@@ -4,26 +4,36 @@ import IconButton from '@mui/material/IconButton';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
 import InfoIcon from '@mui/icons-material/Info';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import EditIcon from '@mui/icons-material/Edit';
+import Tooltip from '@mui/material/Tooltip';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import React, {  useEffect } from 'react';
+import  { API } from "./global";
 
 export default Adder;
 
-
-function Adder({movieList,setMovielist})
+function Adder()
 {
   const history = useHistory()
-  console.log(movieList);
-  return(
-    <div className='one'>
+  const [movieList,setMovielist] = useState([]);
 
-    {movieList.map(({name,poster,rating,summary},index) => (
+  const getMovies = () => {fetch(`${API}/movies`, {method: "GET"}) 
+  .then((data) => data.json()) 
+  .then((mvs) => setMovielist(mvs));};
+  
+  useEffect(() => getMovies(), []);
+
+  const deleteMovie = (id) => {fetch(`${API}/movies/${id}`, 
+  {method: "DELETE"}).then(() => getMovies());};
+
+  return(
+    <div className="card-container">
+
+    {movieList.map(({name,poster,rating,summary,id},index) => (
    
      <Wel
      key={index}
@@ -34,10 +44,8 @@ function Adder({movieList,setMovielist})
      deletebutton={
      
      <IconButton aria-label="delete" color ="error"
-     onClick={() =>{
-    const copyMovieList=[...movieList];
-    copyMovieList.splice(index,1);
-    setMovielist(copyMovieList);
+     onClick={() =>{ deleteMovie(id) 
+    
     }}> <DeleteIcon /></IconButton>
     
     
@@ -45,14 +53,14 @@ function Adder({movieList,setMovielist})
  editbutton={
      
      <IconButton 
-      onClick={() => history.push(`/movielist/edit/${index}`)}
+      onClick={() =>{ history.push(`/movielist/edit/${id}`)}}
       aria-label="edit" color ="secondary"
     > <EditIcon /></IconButton>
     
     
 }
       
-id={index}
+id={id}
      />))} 
 
   </div>
@@ -89,43 +97,33 @@ function Wel({names,posters,ratings,summarys,deletebutton,editbutton,id})
   const styles={
     color:ratings>8.0?"green":"red", 
   }
-  const[show,setShow]= useState(false);
   const history=useHistory(true);
-  const summarystyles={
-    display:show? "none" : "block",
-    height:'80px'
-  };
   return(
-      <div className='lists'>
-     <Card styles={{width:'50px'}}>
+      
+     <Card className='cards'>
 
-       <CardMedia 
-        component="img"
-        height="360"
-        image={posters}
+       <img 
+        className="img"
+        src={posters}
         alt="images"
         />
        <CardContent >
-           <div className='head'>
-           <div>{names}
-           
-           <IconButton color="primary" onClick={() => setShow(!show)}>
-             {show ?< ExpandMoreIcon /> :
-             <ExpandLessIcon />}
+           <div className='cardtitle'>
+           <span>{names}</span>
+           <Tooltip title="Info">
+             <IconButton>
+             < InfoIcon  className='infoOutlineIcon' color="primary" onClick={() => history.push(`/movielist/${id}`)} aria-label="toogle button"/>
              </IconButton>
-             
-             <IconButton color="primary" onClick={() => history.push(`/movielist/${id}`)} aria-label="toogle button">
-             < InfoIcon/>
-             </IconButton>
-           </div>
-
-           <div style={styles} className="movie-rating" >⭐{ratings}  </div>
-           </div>
-
-           <Typography variant="body2" color="text.secondary">
-           <div 
-            style={summarystyles} >{summarys}</div>
-           </Typography>
+             </Tooltip>
+             </div>
+             <div className="cardtext">
+             <span className="rating"> Rating : </span>
+          <span className="pfont" style={styles}>{ratings}</span>
+        </div>
+        <div >
+          <Des props={summarys} />
+        </div>
+        
 
        </CardContent>
 
@@ -135,6 +133,21 @@ function Wel({names,posters,ratings,summarys,deletebutton,editbutton,id})
        </CardActions>
     
     </Card>
-    </div>
+   
   );
   }
+  const Des = ({ props }) => {
+    const[show,setShow]= useState(false);
+    return (
+      <div>
+        <div className="description">
+        <span> Description: </span>
+          <IconButton color="primary" onClick={() => setShow(!show)}>
+  
+            <span className="primary">{show ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}</span>
+          </IconButton>
+        </div>
+        {!show ? <p className="pfont"> {props} </p> : ""}
+      </div>
+    );
+  };

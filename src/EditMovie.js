@@ -3,11 +3,29 @@ import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-export function EditMovie({movieList,setMovielist})
+import { API } from "./global";
+import React, {  useEffect } from 'react';
+export function EditMovie()
 {
     const { id } = useParams();
-    const movie=movieList[id];
-    console.log(movie);
+    //const movie=movieList[id];
+    //console.log(movie);
+    const [movie,setMovielist] = useState(null);
+
+    useEffect(() => {fetch(`${API}/movies/${id}`,
+    {method: "GET",}) 
+    .then((data) => data.json()) 
+    .then((mvs) => setMovielist(mvs));
+  }, []);
+
+
+
+ 
+  return (<div>{movie ? <EditMovieForm movie={movie} /> : <h2>Loading</h2>}</div>);
+
+}
+function  EditMovieForm({movie})
+{
   const[name,setName]=useState(movie.name);
   const[poster,setPoster]=useState(movie.poster);
   const[rating,setRating]=useState(movie.rating);
@@ -15,7 +33,7 @@ export function EditMovie({movieList,setMovielist})
   const[trailer,setTrailer]=useState(movie.trailer);
   const history= useHistory()
   return(
-  <div className="list">
+    <div className="list">
     <TextField value={poster} label="Poster Link" variant="outlined" onChange={(event)=> setPoster(event.target.value)} />
     <TextField value={name}  label="Movie name" variant="outlined" onChange={(event)=> setName(event.target.value)}/>
     <TextField value={rating}  label="Ratings" variant="outlined" onChange={(event)=> setRating(event.target.value)}/>
@@ -32,14 +50,20 @@ export function EditMovie({movieList,setMovielist})
         summary:summary,
         trailer:trailer,
       };  
-      const copyMovieList=[...movieList];
-      copyMovieList[id]=updatedMovie;
-      setMovielist(copyMovieList);  
+      //const copyMovieList=[...movie];
+      //copyMovieList[id]=updatedMovie;
+      //setMovielist(copyMovieList);  
      // setMovielist([...movieList,newMovie]);
-      useHistory= history.push("/movielist");
+      //useHistory= history.push("/movielist");
+      fetch(`${API}/movies/${movie.id}`, {
+        method: "PUT",body: JSON.stringify(updatedMovie),
+        headers: {"Content-Type": "application/json",},
+      }).then(() => history.push("/movielist"));
+
       
     }}>Save</Button>
     </div >
-  );
 
+  );
 }
+

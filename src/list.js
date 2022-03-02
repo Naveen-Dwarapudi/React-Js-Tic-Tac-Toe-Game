@@ -13,8 +13,6 @@
       "name": " Shawshank",
       "rating": 7.3,
       "summary": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency",
-      "director": "Frank Darabont",
-      "stars": "Tim Robbins,Morgan Freeman,Bob Gunton,William sadler",  
       "trailer":"https://www.youtube.com/embed/6hB3S9bIaco" 
     },
     {
@@ -23,8 +21,6 @@
       "name": "Godfather (1972)",
       "rating": 9.2,
       "summary": "The aging patriarch of an organized crime dynasty in postwar Newyork city transfers control of his clandestine empire to his reluctant youngest son.",
-      "director": "Fransis Ford Coppola",
-      "stars": "Marlon Bardo,AI Pacino,James Caan,Diane Keaton",
       "trailer":"https://www.youtube.com/embed/sY1S34973zA"
   
     },
@@ -34,8 +30,6 @@
       "name": "Dark Knight(2008)",
       "rating": 9.0,
       "summary": "When the menace known as the joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of his ability to fight injustice.",
-      "director": "Christopher Nolan",
-      "stars": "Christian Bale,Heath Ledger,Aaron Echart,Michael Caine",
       "trailer":"https://www.youtube.com/embed/EXeTwQWrcwY"
   
     },
@@ -45,8 +39,6 @@
       "name": "Godfather 2(1974)",
       "rating": 9.0,
       "summary": "The early life of Vito coreleone in 1920s newyork city is portrayed,While his son,Michael expands his grip on the family.",
-      "director": "Francis Ford Coppola",
-      "stars": "AL Pacino,Robert De Niro,Robert Duvall,Diane Keaton",
       "trailer":"https://www.youtube.com/embed/8PyZCU2vpi8"
   
     },
