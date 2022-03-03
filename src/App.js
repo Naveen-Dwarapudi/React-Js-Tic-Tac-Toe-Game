@@ -4,23 +4,16 @@ import ColorBox from "./addcolor.js";
 import Adder from "./movielist.js";
 import Moviedetails from "./moviedetails";
 import Addmovie from "./addmovie";
-import {Initial} from "./list.js";
+import Basicform from "./BasicForm.js";
 import './App.css';
 import { useState } from "react";
-import TextField from '@mui/material/TextField';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Button from "@mui/material/Button";
-import { useHistory } from "react-router-dom";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import { EditMovie } from "./EditMovie.js";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -32,8 +25,7 @@ import Box from '@mui/material/Box';
 
 export default function App() {
   
-  const history = useHistory();
- const [movieList,setMovielist] = useState(Initial);
+
 
  const [mode,setMode]=useState("light");
  const theme = createTheme({
@@ -70,6 +62,7 @@ export default function App() {
         <Switch>
         <Route exact path="/">
             <Home />
+            <Basicform />
           </Route>
 
           <Route path="/Colorgame">
