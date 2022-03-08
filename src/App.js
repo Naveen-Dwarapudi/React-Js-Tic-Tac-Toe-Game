@@ -2,9 +2,9 @@ import React from "react";
 import Colorgame from "./Colorgame.js";
 import ColorBox from "./addcolor.js";
 import Adder from "./movielist.js";
-import Moviedetails from "./moviedetails";
+import Moviedetails from "./moviedetails"; 
 import Addmovie from "./addmovie";
-import Basicform from "./BasicForm.js";
+import Formvalidation from "./form validation.js";
 import './App.css';
 import { useState } from "react";
 import {
@@ -47,8 +47,9 @@ export default function App() {
         <Button  color="inherit" component={Link} to="/" >  <Box sx={{ fontWeight: 'bold', fontSize: '13px'  }}>Home</Box></Button>
         <Button color="inherit" component={Link} to="/movielist" ><Box sx={{ fontWeight: 'bold', fontSize: '13px'  }}>Movie List</Box></Button>
         <Button color="inherit" component={Link} to="/movielist/Addmovie" ><Box sx={{ fontWeight: 'bold', fontSize: '13px'  }}>Add Movie</Box></Button>
-        <Button color="inherit" component={Link} to="/Colorgame" ><Box sx={{ fontWeight: 'bold', fontSize: '13px'  }}>Color game</Box></Button>
+        <Button color="inherit" component={Link} to="/Colorgame" ><Box sx={{ fontWeight: 'bold', fontSize: '13px'  }}>Tie Tac Tac</Box></Button>
         <Button color="inherit" component={Link} to="/addcolor" ><Box sx={{ fontWeight: 'bold', fontSize: '13px'  }}>Add color</Box></Button>
+        <Button color="inherit" component={Link} to="/Form" ><Box sx={{ fontWeight: 'bold', fontSize: '13px'  }}>Form Validation</Box></Button>
           <Button color="inherit" 
           style={{marginLeft:"auto"}}
               startIcon = {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
@@ -62,11 +63,19 @@ export default function App() {
         <Switch>
         <Route exact path="/">
             <Home />
-            <Basicform />
           </Route>
 
           <Route path="/Colorgame">
             <Colorgame /> 
+          </Route>
+          <Route path="/Form">
+          <div className="container mt-3">
+      <div className="row">
+        <div className="col-md-5">
+            <Formvalidation /> 
+            </div>
+            </div>
+            </div>
           </Route>
 
           <Route path="/addcolor">
@@ -108,7 +117,7 @@ export default function App() {
 function Error()
 {
   return(
-    <img className="error" src="https://freefrontend.com/assets/img/html-funny-404-pages/CodePen-404-Page.gif" alt="404 Error"></img>
+    <img className="errors" src="https://freefrontend.com/assets/img/html-funny-404-pages/CodePen-404-Page.gif" alt="404 Error"></img>
   );
 }
 function Home() {
