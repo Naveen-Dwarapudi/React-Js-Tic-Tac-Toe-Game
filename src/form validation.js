@@ -38,22 +38,19 @@ export default function Formvalidation()
             console.log(values)
           }}
         >
-          {formik => (
             <div>
               <h1 className="my-4 font-weight-bold .display-4">Sign Up</h1>
-              <form action="https://formsubmit.co/fa2fe970dd076ba45aeea25cf11e0a05" method="POST"  >
-                <TextField label="First Name" name="firstName" type="text" />
-                <TextField label="last Name" name="lastName" type="text" />
-                <TextField label="Email" name="email" type="email" />
-                <TextField label="password" name="password" type="password" />
-                <TextField label="Confirm Password" name="confirmPassword" type="password" />
-                <div className="button-locate">
-                <button className="btn btn-primary mt-3 " type="submit">Register</button>
-                <button className="btn btn-danger mt-3 ml-3" type="reset">Reset</button>
-                </div>
-              </form>
+              <Form>
+            <TextField label="First Name" name="firstName" type="text" />
+            <TextField label="last Name" name="lastName" type="text" />
+            <TextField label="Email" name="email" type="email" />
+            <TextField label="password" name="password" type="password" />
+            <TextField label="Confirm Password" name="confirmPassword" type="password" />
+            <button className="btn btn-primary mt-3" type="submit">Register</button>
+            <button className="btn btn-danger mt-3 ml-3" type="reset">Reset</button>
+          </Form>
             </div>
-          )}
+        
         </Formik>
       )
  }
